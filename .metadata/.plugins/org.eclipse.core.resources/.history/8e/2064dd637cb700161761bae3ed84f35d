@@ -1,0 +1,58 @@
+package view;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import model.*;
+
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Display {
+
+	public static void display(BankBSP bank) 
+		throws Exception {
+		
+		if (bank instanceof SECB) {
+			
+			Document document = new Document();
+			String date = new SimpleDateFormat("yyyyMMMMhhmmss").format(new Date());
+			PdfWriter.getInstance(document,
+			 new FileOutputStream("D:\\" + date + "bpi.pdf"));
+			
+			document.open();
+		    Paragraph paragraph = new Paragraph();
+		    
+			SECB account = (SECB) bank;
+			account.welcome();
+			account.depositAmountRequirement();
+			account.depositPromo();
+			account.maintainingBalance();
+			account.interestRate();
+			account.displayFinancialStatement();
+			account.displayTotalMarketShares();
+		} else if (bank instanceof BPIFamilyBank) {
+			BPIFamilyBank account = (BPIFamilyBank) bank;
+			account.welcome();
+			account.depositAmountRequirement();
+			account.depositPromo();
+			account.maintainingBalance();
+			account.interestRate();
+			account.displayFinancialStatement();
+			account.displayTotalMarketShares();
+		} else if (bank instanceof BDO) {
+			BDO account = (BDO) bank;
+			account.welcome();
+			account.depositAmountRequirement();
+			account.depositPromo();
+			account.maintainingBalance();
+			account.interestRate();
+			account.displayFinancialStatement();
+			account.displayTotalMarketShares();
+		} 
+	}
+}

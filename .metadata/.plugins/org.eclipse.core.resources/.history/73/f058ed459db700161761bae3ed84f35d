@@ -1,0 +1,131 @@
+package view;
+
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import model.*;
+
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Display {
+
+
+	public static void display(BankBSP bank) 
+		throws Exception {
+		
+		
+		
+		if (bank instanceof SECB) {	
+
+			Document document = new Document();
+			String date = new SimpleDateFormat("yyyyMMMMddhhmmss").format(new Date());
+			PdfWriter.getInstance(document,
+			 new FileOutputStream("D:\\" + date + "secb.pdf"));
+			
+			document.open();
+		    Paragraph paragraph = new Paragraph();
+		    
+			SECB account = (SECB) bank;
+			
+		    paragraph.add("Security Bank\n");
+		    paragraph.add("Better banking begins here\n");
+		    paragraph.add("Maligayang pagdating sa " + account.name + "\n");
+		    paragraph.add("To open an account, "
+					+ "minimum deposit amount is P3,000.00\n");
+		    paragraph.add("Minimum opening amount of at least "
+					+ "Php500,000.00 will get you a dinner date with "
+					+ "2014 Ms. World Megan Young.\n");
+		    paragraph.add("Maintaining balance of "
+					+ "at least Php1,000.00 is required.\n");
+		    paragraph.add("Minimum deposit amount of P3,000.00 "
+					+ "to earn an interest rate of 5% per annum.\n");
+		    paragraph.add("PSE Requirement: " 
+					+ "Php 2,000,000,000.00\n");
+		    paragraph.add(account.name + " 2015 "
+					+ "Financial Assets: Php141,740,664,644.70\n");
+		    paragraph.add("PSE Required Shares: " 
+					+ "5,000,000\n");
+		    paragraph.add(account.name + "total shares: " + 
+					"753,538,887\n");
+		    
+		    account.welcome();
+			account.depositAmountRequirement();
+			account.depositPromo();
+			account.maintainingBalance();
+			account.interestRate();
+			account.displayFinancialStatement();
+			account.displayTotalMarketShares();
+		    
+			Image secbImage = 
+			    	Image.getInstance("d:\\secb.png");
+		    secbImage.scaleAbsolute(150f, 150f);
+		
+		    document.add(secbImage);
+			document.add(paragraph);
+			document.close();
+		} else if (bank instanceof BPIFamilyBank) {
+			
+			Document document = new Document();
+			String date = new SimpleDateFormat("yyyyMMMMddhhmmss").format(new Date());
+			PdfWriter.getInstance(document,
+			 new FileOutputStream("D:\\" + date + "bpi.pdf"));
+			
+			document.open();
+		    Paragraph paragraph = new Paragraph();
+		    
+		    paragraph.add("Bank of the Philippine Islands\n");
+		    paragraph.add("Make the best happen\n");
+		    
+			BPIFamilyBank account = (BPIFamilyBank) bank;
+			account.welcome();
+			account.depositAmountRequirement();
+			account.depositPromo();
+			account.maintainingBalance();
+			account.interestRate();
+			account.displayFinancialStatement();
+			account.displayTotalMarketShares();
+			
+			Image bpiImage = 
+			    	Image.getInstance("d:\\bpi.png");
+			bpiImage.scaleAbsolute(150f, 150f);
+			 
+		     document.add(bpiImage);
+			 document.add(paragraph);
+			 document.close();
+		} else if (bank instanceof BDO) {
+			Document document = new Document();
+			String date = new SimpleDateFormat("yyyyMMMMddhhmmss").format(new Date());
+			PdfWriter.getInstance(document,
+			 new FileOutputStream("D:\\" + date + "bdo.pdf"));
+			
+			document.open();
+		    Paragraph paragraph = new Paragraph();
+		    
+		    paragraph.add("Banco de Oro\n");
+		    paragraph.add("We find ways\n");
+		    
+			BDO account = (BDO) bank;
+			account.welcome();
+			account.depositAmountRequirement();
+			account.depositPromo();
+			account.maintainingBalance();
+			account.interestRate();
+			account.displayFinancialStatement();
+			account.displayTotalMarketShares();
+			
+			Image bdoImage = 
+			    	Image.getInstance("d:\\bdo.png");
+			bdoImage.scaleAbsolute(200f, 150f);
+			 
+		     document.add(bdoImage);
+			 document.add(paragraph);
+			 document.close();
+		} 
+	}
+}

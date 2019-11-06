@@ -1,0 +1,114 @@
+package view;
+
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import model.*;
+
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Display {
+
+	public static void display(BankBSP bank) 
+		throws Exception {
+		
+		
+		
+		if (bank instanceof SECB) {	
+
+			Document document = new Document();
+			String date = new SimpleDateFormat("yyyyMMMMddhhmmss").format(new Date());
+			PdfWriter.getInstance(document,
+			 new FileOutputStream("D:\\" + date + "secb.pdf"));
+			
+			document.open();
+		    Paragraph paragraph = new Paragraph();
+		    
+		    paragraph.add("Security Bank\n");
+		    paragraph.add("Better banking begins here\n");
+		    
+		    
+			SECB account = (SECB) bank;
+			account.welcome();
+			account.depositAmountRequirement();
+			account.depositPromo();
+			account.maintainingBalance();
+			account.interestRate();
+			account.displayFinancialStatement();
+			account.displayTotalMarketShares();
+			
+			Image secbImage = 
+			    	Image.getInstance("d:\\secb.png");
+		    secbImage.scaleAbsolute(150f, 150f);
+			
+		    document.add((Element) account);
+		    document.add(secbImage);
+			document.add(paragraph);
+			document.close();
+		} else if (bank instanceof BPIFamilyBank) {
+			
+			Document document = new Document();
+			String date = new SimpleDateFormat("yyyyMMMMddhhmmss").format(new Date());
+			PdfWriter.getInstance(document,
+			 new FileOutputStream("D:\\" + date + "bpi.pdf"));
+			
+			document.open();
+		    Paragraph paragraph = new Paragraph();
+		    
+		    paragraph.add("Bank of the Philippine Islands\n");
+		    paragraph.add("Make the best happen\n");
+		    
+			BPIFamilyBank account = (BPIFamilyBank) bank;
+			account.welcome();
+			account.depositAmountRequirement();
+			account.depositPromo();
+			account.maintainingBalance();
+			account.interestRate();
+			account.displayFinancialStatement();
+			account.displayTotalMarketShares();
+			
+			Image bpiImage = 
+			    	Image.getInstance("d:\\bpi.png");
+			bpiImage.scaleAbsolute(150f, 150f);
+			 
+		     document.add(bpiImage);
+			 document.add(paragraph);
+			 document.close();
+		} else if (bank instanceof BDO) {
+			Document document = new Document();
+			String date = new SimpleDateFormat("yyyyMMMMddhhmmss").format(new Date());
+			PdfWriter.getInstance(document,
+			 new FileOutputStream("D:\\" + date + "bdo.pdf"));
+			
+			document.open();
+		    Paragraph paragraph = new Paragraph();
+		    
+		    paragraph.add("Banco de Oro\n");
+		    paragraph.add("We find ways\n");
+		    
+			BDO account = (BDO) bank;
+			account.welcome();
+			account.depositAmountRequirement();
+			account.depositPromo();
+			account.maintainingBalance();
+			account.interestRate();
+			account.displayFinancialStatement();
+			account.displayTotalMarketShares();
+			
+			Image bdoImage = 
+			    	Image.getInstance("d:\\bdo.png");
+			bdoImage.scaleAbsolute(200f, 150f);
+			 
+		     document.add(bdoImage);
+			 document.add(paragraph);
+			 document.close();
+		} 
+	}
+}

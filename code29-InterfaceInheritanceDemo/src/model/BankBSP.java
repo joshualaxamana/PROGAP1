@@ -1,0 +1,18 @@
+package model;
+
+public abstract class BankBSP {
+
+	public String name = "Bangko Sentral ng Pilipinas";
+	public BankBSP() {
+		System.out.println("\n\nInitialized.");
+	}
+	
+	public void welcome() {
+		System.out.println("Welcome to " + name);
+	}
+	
+	public abstract void depositAmountRequirement();
+	public abstract void depositPromo();
+	public abstract void maintaingBalance();
+	public abstract void interestRate();
+}

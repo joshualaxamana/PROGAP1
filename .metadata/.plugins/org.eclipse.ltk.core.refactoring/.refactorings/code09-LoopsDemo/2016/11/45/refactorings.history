@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;utility&apos; to &apos;ASCIIAssignment/src&apos;&#x0D;&#x0A;- Original project: &apos;code09-LoopsDemo&apos;&#x0D;&#x0A;- Destination element: &apos;ASCIIAssignment/src&apos;&#x0D;&#x0A;- Original element: &apos;code09-LoopsDemo/src/utility&apos;" description="Copy package" destination="=ASCIIAssignment/src" element1="/src&lt;utility" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1478268628614" version="1.0"/>
+</session>
